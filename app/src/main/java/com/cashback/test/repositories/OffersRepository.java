@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.cashback.test.database.DatabaseClient;
 import com.cashback.test.interfaces.IOffers;
 import com.cashback.test.models.OfferModel;
+import com.cashback.test.utils.FilterUtil;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -55,7 +56,7 @@ public class OffersRepository {
             @Override
             protected void onPostExecute(List<OfferModel> offers) {
                 super.onPostExecute(offers);
-                offersResponseLiveData.setValue(offers);
+                offersResponseLiveData.setValue(FilterUtil.filterByDateAsc(offers));
             }
         }
 
@@ -69,7 +70,7 @@ public class OffersRepository {
                         public void onResponse(Call<List<OfferModel>> call, retrofit2.Response<List<OfferModel>> response) {
                             if (response.body() != null) {
                                 List<OfferModel> offers = response.body();
-                                offersResponseLiveData.postValue(offers);
+                                offersResponseLiveData.postValue(FilterUtil.filterByDateAsc(offers));
 
                                 class SaveOffers extends AsyncTask<Void, Void, Void> {
                                     @Override
