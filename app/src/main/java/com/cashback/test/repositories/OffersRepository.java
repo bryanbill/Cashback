@@ -2,7 +2,6 @@ package com.cashback.test.repositories;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,17 +10,13 @@ import com.cashback.test.database.DatabaseClient;
 import com.cashback.test.interfaces.IOffers;
 import com.cashback.test.models.OfferModel;
 
-import okhttp3.Interceptor;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class OffersRepository {
     private static final String API = "https://cashbacktest.s3.eu-west-2.amazonaws.com/";
