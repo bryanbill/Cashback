@@ -1,61 +1,82 @@
 package com.cashback.test.models;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
+@Entity(tableName = "offers")
 public class OfferModel implements Serializable {
 
     @SerializedName("promotionDetailsId")
     @Expose
+    @PrimaryKey
     private Integer promotionDetailsId;
+
     @SerializedName("promotionId")
     @Expose
+    @ColumnInfo(name = "promotionId")
     private Integer promotionId;
     @SerializedName("productId")
     @Expose
+    @ColumnInfo(name = "productId")
     private Integer productId;
     @SerializedName("promotionDescription")
     @Expose
+    @ColumnInfo(name = "promotionDescription")
     private String promotionDescription;
     @SerializedName("promotionStatus")
     @Expose
+    @ColumnInfo(name = "promotionStatus")
     private String promotionStatus;
     @SerializedName("promotionClaimLimit")
     @Expose
+    @ColumnInfo(name = "promotionClaimLimit")
     private Integer promotionClaimLimit;
     @SerializedName("productCashBack")
     @Expose
+    @ColumnInfo(name = "productCashBack")
     private Integer productCashBack;
     @SerializedName("promotionDetailsRanking")
     @Expose
+    @ColumnInfo(name = "promotionDetailsRanking")
     private Integer promotionDetailsRanking;
     @SerializedName("productImage")
     @Expose
+    @ColumnInfo(name = "productImage")
     private String productImage;
     @SerializedName("offerStartDate")
     @Expose
+    @ColumnInfo(name = "offerStartDate")
     private String offerStartDate;
     @SerializedName("offerEndDate")
     @Expose
+    @ColumnInfo(name = "offerEndDate")
     private String offerEndDate;
     @SerializedName("productBarcode")
     @Expose
+    @ColumnInfo(name = "productBarcode")
     private Long productBarcode;
     @SerializedName("productName")
     @Expose
+    @ColumnInfo(name = "productName")
     private String productName;
     @SerializedName("productSize")
     @Expose
+    @ColumnInfo(name = "productSize")
     private String productSize;
     @SerializedName("promotion_details_retailer_commission")
     @Expose
+    @ColumnInfo(name = "promotion_details_retailer_commission")
     private Double promotionDetailsRetailerCommission;
     @SerializedName("promotionDetailsHotDealsIndicator")
     @Expose
+    @ColumnInfo(name = "promotionDetailsHotDealsIndicator")
     private String promotionDetailsHotDealsIndicator;
     private final static long serialVersionUID = -1052993392936288130L;
 

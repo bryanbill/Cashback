@@ -37,6 +37,7 @@ public class OffersFragment extends Fragment {
 
         offersAdapter = new  OffersAdapter(getContext());
         offersFragmentViewModel = new  ViewModelProvider(this).get(OffersFragmentViewModel.class);
+        offersFragmentViewModel.setContext(getContext());
         offersFragmentViewModel.init();
 
 
