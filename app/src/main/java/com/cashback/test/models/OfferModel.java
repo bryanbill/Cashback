@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-@Entity
+@Entity(tableName = "offers")
 public class OfferModel implements Serializable {
 
     @SerializedName("promotionDetailsId")

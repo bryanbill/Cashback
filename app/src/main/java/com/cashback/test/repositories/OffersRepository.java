@@ -1,10 +1,13 @@
 package com.cashback.test.repositories;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.cashback.test.database.DatabaseClient;
 import com.cashback.test.interfaces.IOffers;
 import com.cashback.test.models.OfferModel;
 
@@ -24,9 +27,11 @@ public class OffersRepository {
 
     private IOffers iOffers;
     private MutableLiveData<List<OfferModel>> offersResponseLiveData;
+    private Context context;
 
-    public OffersRepository() {
+    public OffersRepository(Context ctx) {
         offersResponseLiveData = new MutableLiveData<>();
+        this.context = ctx;
 
         OkHttpClient client = new OkHttpClient.Builder().build();
 
@@ -43,22 +48,34 @@ public class OffersRepository {
                 .enqueue(new Callback<List<OfferModel>>() {
                     @Override
                     public void onResponse(Call<List<OfferModel>> call, retrofit2.Response<List<OfferModel>> response) {
-                        Log.d("OffersRepository", "onResponse: " + response.body());
                         if (response.body() != null) {
-                            Log.i("OffersRepository", "onResponse: " + response.body().size());
-                            offersResponseLiveData.postValue(response.body());
+                            List<OfferModel> offers = response.body();
+                            offersResponseLiveData.postValue(offers);
+
+                            class SaveOffers extends AsyncTask<Void, Void, Void> {
+                                @Override
+                                protected Void doInBackground(Void... voids) {
+                                    // Persist data to database
+                                    for (OfferModel offer : offers) {
+                                        DatabaseClient.getInstance(context).getAppDatabase().dataBaseAction().insertOffer(offer);
+                                    }
+                                    return null;
+                                }
+                            }
+                            SaveOffers saveOffers = new SaveOffers();
+                            saveOffers.execute();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<List<OfferModel>> call, Throwable t) {
-                        Log.e("OffersRepository", "onFailure: " + t.getMessage());
                         offersResponseLiveData.postValue(null);
                     }
                 });
     }
 
-    public LiveData<List<OfferModel>> listOffers(){
-        return  offersResponseLiveData;
+    public LiveData<List<OfferModel>> listOffers() {
+        return offersResponseLiveData;
     }
+
 }
