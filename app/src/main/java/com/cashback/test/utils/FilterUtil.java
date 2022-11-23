@@ -1,6 +1,7 @@
 package com.cashback.test.utils;
 
 import android.os.Build;
+import android.util.Log;
 
 import com.cashback.test.models.OfferModel;
 
@@ -36,6 +37,7 @@ public class FilterUtil {
                 }
                 return o1.getPromotionDetailsRanking().compareTo(o2.getPromotionDetailsRanking());
             });
+            return filteredOffers;
         }
         return offers;
     }
