@@ -28,13 +28,21 @@ public class OffersFragmentViewModel extends ViewModel {
     }
 
     public void init() {
-        offersRepository = new OffersRepository(context);
-        offersRepository.getOffers();
-        offers = offersRepository.listOffers();
+        try{
+            offersRepository = new OffersRepository(context);
+            offersRepository.getOffers();
+            offers = offersRepository.listOffers();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void getOffers() {
-        offersRepository.getOffers();
+        try{
+            offersRepository.getOffers();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public LiveData<List<OfferModel>> listOffers() {
