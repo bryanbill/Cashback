@@ -2,6 +2,8 @@ package com.cashback.test.repositories;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.cashback.test.database.DatabaseClient;
@@ -60,7 +62,7 @@ public class OffersRepository {
     GetOffers getOffers = new GetOffers();
     List<OfferModel> offers = getOffers.execute().get();
 
-    if (offers == null) {
+    if (offers == null || offers.size() == 0) {
       iOffers.getOffers().enqueue(new Callback<List<OfferModel>>() {
         @Override
         public void onResponse(Call<List<OfferModel>> call,

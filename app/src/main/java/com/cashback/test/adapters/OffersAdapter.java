@@ -58,6 +58,18 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersResu
             holder.productCommission.setText(df.format( (offer.getProductCashBack() * offer.getPromotionDetailsRetailerCommission())));
             Glide.with(context)
                     .load(offer.getProductImage())
+//                    .listener(new RequestListener<Drawable>() {
+//                        @Override
+//                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+//                            holder.productImageView.setImageResource(R.drawable.ic_launcher_background);
+//                            return false;
+//                        }
+//
+//                        @Override
+//                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                            return false;
+//                        }
+//                    })
                     .transition(withCrossFade())
                     .centerCrop()
                     .into(holder.productImageView);
