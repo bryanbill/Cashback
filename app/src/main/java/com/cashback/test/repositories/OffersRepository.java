@@ -3,7 +3,6 @@ package com.cashback.test.repositories;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.cashback.test.database.DatabaseClient;
