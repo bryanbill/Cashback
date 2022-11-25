@@ -20,14 +20,11 @@ HTTPS: `git clone https://github.com/bryanbill/cashback.git`
 
 SSH: `git clone git@github.com:bryanbill/cashback.git`
 
-
-
 ## Languages and Frameworks
 
 - Java
 - Gradle
 - XML
-
 
 ## Known Bugs
 
@@ -36,7 +33,6 @@ SSH: `git clone git@github.com:bryanbill/cashback.git`
 ## Contributing
 
 Contributions are currently not allowed.
-
 
 ## Licence
 
